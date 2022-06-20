@@ -163,7 +163,7 @@ while read -r line; do
     msg_dbg "Line No $line_no/$line_count : $line"
   fi
 done < $gencad_input
-echo
+echo 1>&2
 
 # Statistics
 msg_info "Stripped $line_removed lines. (Reduced overall count by $((line_removed*100/line_count))%)"
