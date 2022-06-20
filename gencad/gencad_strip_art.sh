@@ -108,6 +108,7 @@ fi
 ceol=$(tput el)
 
 line_count=$(cat $gencad_input | wc -l)
+line_pos="${#line_count}"
 line_removed=0
 line_no=0
 
@@ -157,7 +158,7 @@ while read -r line; do
 
   echo "${line}${CRLF}" >> "$gencad_output"
   if [ $verbose -eq 0 ]; then
-    echo -ne "\r${ceol}Procesed $line_no/$line_count ($((line_no*100/line_count))%) $SECTION" 1>&2
+    printf "\r${ceol}Procesed %${line_pos}d/$line_count (%3d%%) $SECTION" "$line_no" "$((line_no*100/line_count))" 1>&2
   else
     msg_dbg "Line No $line_no/$line_count : $line"
   fi
